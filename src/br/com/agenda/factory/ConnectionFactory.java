@@ -2,7 +2,7 @@ package br.com.agenda.factory;
 
 // TODO: encapsulate secrets in environment variables
 
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectionFactory {
@@ -12,7 +12,7 @@ public class ConnectionFactory {
 
     public static Connection createConnectionToMySQL() throws Exception {
         // Loads class in JVM
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
         Connection connection = (Connection) DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
 

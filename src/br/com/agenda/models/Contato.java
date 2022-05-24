@@ -8,7 +8,8 @@ public class Contato {
     private int idade;
     private Date dataCadastro;
 
-    public Contato(String nome, int idade, Date dataCadastro) {
+    public Contato(int id, String nome, int idade, Date dataCadastro) {
+        this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.dataCadastro = dataCadastro;

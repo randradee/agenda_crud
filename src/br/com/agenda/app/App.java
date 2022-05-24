@@ -1,6 +1,7 @@
 package br.com.agenda.app;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 import br.com.agenda.dao.ContatoDAO;
@@ -25,10 +26,25 @@ public class App {
 //            default:
 //                System.out.printf("Escolha uma opção válida");
 //        }
+        ContatoDAO contatoDAO = new ContatoDAO();
 
-        Contato contato = new Contato("Renato", 29, new Date());
+        // criar contato
+//        Contato novoContato = new Contato("Renato", 29, new Date());
+//        contatoDAO.create(contato);
 
-        ContatoDAO novoContato = new ContatoDAO();
-        novoContato.create(contato);
+        // criar contato
+        Contato novoContato = new Contato(2, "Luiz", 50, new Date());
+        contatoDAO.create(novoContato);
+
+
+        // pesquisar
+        List<Contato> consultaContatoPorId = contatoDAO.readAll();
+
+        for (Contato contato : consultaContatoPorId){
+            System.out.println(contato.getId());
+            System.out.println(contato.getNome());
+            System.out.println(contato.getIdade());
+            System.out.println(contato.getDataCadastro());
+        }
     }
 }
