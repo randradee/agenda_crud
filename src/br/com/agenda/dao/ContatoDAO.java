@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.Date;
 
 public class ContatoDAO {
-    public void save(Contato contato) throws Exception {
+    public void create(Contato contato) throws Exception {
         String insertQuery = "INSERT INTO contatos (nome, idade, dataCadastro) VALUES (?, ?, ?)";
 
         Connection conn = null;
@@ -27,6 +27,7 @@ public class ContatoDAO {
 
             // executar a query
             pstm.execute();
+            System.out.printf("Contato criado com sucesso!");
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
