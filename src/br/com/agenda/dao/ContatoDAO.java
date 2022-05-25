@@ -3,17 +3,14 @@ package br.com.agenda.dao;
 import br.com.agenda.factory.ConnectionFactory;
 import br.com.agenda.models.Contato;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
 public class ContatoDAO {
-    public void create(Contato contato) throws Exception {
+    public void criarContato(Contato contato) throws Exception {
         String insertQuery = "INSERT INTO contatos (nome, idade, dataCadastro) VALUES (?, ?, ?)";
 
         Connection conn = null;
@@ -47,7 +44,7 @@ public class ContatoDAO {
             }
         }
     }
-    public List<Contato> readAll() throws Exception {
+    public List<Contato> consultarTodosOsContatos() throws Exception {
         String selectAllQuery = "SELECT * FROM contatos";
 
         List<Contato> contatos = new ArrayList<Contato>();
@@ -74,7 +71,14 @@ public class ContatoDAO {
                 int idade = parseInt(rset.getString("idade"));
                 Date dataCadastro = rset.getDate("dataCadastro");
 
-                contatos.add(new Contato(id, nome, idade, dataCadastro));
+                Contato contato = new Contato();
+
+                contato.setId(id);
+                contato.setNome(nome);
+                contato.setIdade(idade);
+                contato.setDataCadastro(dataCadastro);
+
+                contatos.add(contato);
             }
 
         } catch (Exception e) {
@@ -91,4 +95,60 @@ public class ContatoDAO {
         }
         return contatos;
     }
-}
+
+    public Contato consultarContatoPorNome(Contato contato) {
+        String query = "SELECT * FROM contatos WHERE nome=?";
+
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rset = null;
+
+        Contato contatoRetornado = null;
+        try {
+            // criar uma conexão com o banco de dados
+            conn = ConnectionFactory.createConnectionToMySQL();
+            conn.createStatement();
+
+
+            // criar uma PreparedStatement para executar uma query
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, contato.getNome());
+
+            // executar a query
+            rset = pstm.executeQuery();
+
+            if(rset != null && rset.next()){
+
+                int id = rset.getInt("id");
+                String queryNome = rset.getString("nome");
+                int idade = parseInt(rset.getString("idade"));
+                Date dataCadastro = rset.getDate("dataCadastro");
+
+                contatoRetornado = new Contato();
+
+                contatoRetornado.setId(id);
+                contatoRetornado.setNome(queryNome);
+                contatoRetornado.setIdade(idade);
+                contatoRetornado.setDataCadastro(dataCadastro);
+
+
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // fechar as conexões
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return contatoRetornado;
+        }
+
+    }

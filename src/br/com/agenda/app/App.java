@@ -29,22 +29,29 @@ public class App {
         ContatoDAO contatoDAO = new ContatoDAO();
 
         // criar contato
-//        Contato novoContato = new Contato("Renato", 29, new Date());
-//        contatoDAO.create(contato);
-
-        // criar contato
-        Contato novoContato = new Contato(2, "Luiz", 50, new Date());
-        contatoDAO.create(novoContato);
+//        Contato novoContato = new Contato();
+//        contatoDAO.criarContato(novoContato);
 
 
         // pesquisar
-        List<Contato> consultaContatoPorId = contatoDAO.readAll();
+//        List<Contato> todosOsContatos = contatoDAO.consultarTodosOsContatos();
+//
+//        for (Contato contato : todosOsContatos){
+//            System.out.println(contato.getId());
+//            System.out.println(contato.getNome());
+//            System.out.println(contato.getIdade());
+//            System.out.println(contato.getDataCadastro());
+//        }
 
-        for (Contato contato : consultaContatoPorId){
-            System.out.println(contato.getId());
-            System.out.println(contato.getNome());
-            System.out.println(contato.getIdade());
-            System.out.println(contato.getDataCadastro());
-        }
+        // pesquisar contato por nome
+        Contato pesquisaContato = new Contato();
+        Contato retornoContato = new Contato();
+        pesquisaContato.setNome("Luiz");
+        retornoContato = contatoDAO.consultarContatoPorNome(pesquisaContato);
+        System.out.println(retornoContato.getId());
+        System.out.println(retornoContato.getNome());
+        System.out.println(retornoContato.getIdade());
+        System.out.println(retornoContato.getDataCadastro());
+
     }
 }
