@@ -9,24 +9,49 @@ import br.com.agenda.models.Contato;
 
 public class App {
     public static void main(String[] args) throws Exception {
-
-        // TODO: input do usuário
-//        Scanner input = new Scanner(System.in);
-//        System.out.printf("Como deseja interagir com o banco de dados?\n1. Criar contato\n2. Ler contato específico\n3. Ler todos os contatos\n4. Atualizar contato\n5. Deletar contato");
-//        int op = input.nextInt();
-//
-//        switch(op){
-//            case 1:
-//                // pega dados do input do usuário
-//                System.out.println("Digite o nome do contato: ");
-//                String nome = input.nextLine();
-//                System.out.printf("Digite a idade do contato ");
-//                int idade = input.nextInt();
-//
-//            default:
-//                System.out.printf("Escolha uma opção válida");
-//        }
         ContatoDAO contatoDAO = new ContatoDAO();
+        Scanner scan = new Scanner(System.in).useDelimiter("\\n");
+        int op = -1;
+        do {
+            switch(op){
+                case 1:
+                    Contato novoContato = new Contato();
+                    System.out.println("Digite a idade do contato");
+                    int idade = scan.nextInt();
+                    novoContato.setIdade(idade);
+                    scan.nextLine();
+                    System.out.println("Digite o nome do contato");
+                    String nome = scan.nextLine();
+                    novoContato.setNome(nome);
+                    novoContato.setDataCadastro(new Date());
+                    contatoDAO.criarContato(novoContato);
+
+                    break;
+                case 2:
+                    scan.nextLine();
+                    System.out.println("Digite o nome do contato");
+                    String nomePesquisa = scan.nextLine();
+                    Contato pesquisaContato = new Contato();
+                    pesquisaContato.setNome(nomePesquisa);
+                    Contato retornoContato;
+                    retornoContato = contatoDAO.consultarContatoPorNome(pesquisaContato);
+                    System.out.println("Nome do contato: "+ retornoContato.getNome()+" , idade do contato: "+ retornoContato.getIdade()+" , data de cadastro: " + retornoContato.getDataCadastro());
+                    break;
+            }
+
+            printMenu();
+            op = scan.nextInt();
+
+        } while(op != 6);
+        scan.close();
+        System.out.println("Obrigado por utilizar este aplicativo!");
+
+
+
+
+
+
+
 
         // criar contato
 //        Contato novoContato = new Contato();
@@ -54,13 +79,27 @@ public class App {
 //        System.out.println(retornoContato.getDataCadastro());
 
         // atualizar contato
-        Contato novoContato = new Contato();
-        novoContato.setNome("Amanda");
-        novoContato.setIdade(46);
-        novoContato.setDataCadastro(new Date());
-        novoContato.setId(1);
+//        Contato novoContato = new Contato();
+//        novoContato.setNome("Amanda");
+//        novoContato.setIdade(46);
+//        novoContato.setDataCadastro(new Date());
+//        novoContato.setId(1);
+//
+//        contatoDAO.atualizarContato(novoContato);
 
-        contatoDAO.atualizarContato(novoContato);
+        // deletar contato
+//        Contato deletarContato = new Contato();
+//        deletarContato.setId(2);
+//        contatoDAO.apagarContato(deletarContato);
 
+    }
+    public static void printMenu(){
+        System.out.println("Como deseja interagir com sua agenda?\n"
+                + "1. Criar novo contato\n"
+                + "2. Pesquisar contato por nome\n"
+                + "3. Mostrar todos os contatos\n"
+                + "4. Atualizar contato\n"
+                + "5. Apagar contato\n"
+                + "6. Sair\n");
     }
 }

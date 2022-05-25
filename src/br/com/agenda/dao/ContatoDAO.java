@@ -157,7 +157,7 @@ public class ContatoDAO {
 
         Connection conn = null;
         PreparedStatement pstm = null;
-        ResultSet rset = null;
+
 
         try {
             // criar uma conexão com o banco de dados
@@ -173,7 +173,7 @@ public class ContatoDAO {
 
             // executar a query
             pstm.execute();
-            System.out.println("Update realizado com sucesso!");
+            System.out.println("Contato atualizado com sucesso!");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -187,4 +187,37 @@ public class ContatoDAO {
             }
         }
     }
+
+    public void apagarContato(Contato contato) {
+        String query = "DELETE FROM contatos WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement pstm = null;
+
+        try {
+            // criar uma conexão com o banco de dados
+            conn = ConnectionFactory.createConnectionToMySQL();
+            conn.createStatement();
+
+            // criar uma PreparedStatement para executar a query
+            pstm = conn.prepareStatement(query);
+            pstm.setInt(1, contato.getId());
+
+            // executar a query
+            pstm.execute();
+            System.out.println("Contato apagado com sucesso!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // fechar as conexões
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
