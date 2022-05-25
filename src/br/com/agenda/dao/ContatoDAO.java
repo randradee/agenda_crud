@@ -44,6 +44,7 @@ public class ContatoDAO {
             }
         }
     }
+
     public List<Contato> consultarTodosOsContatos() throws Exception {
         String selectAllQuery = "SELECT * FROM contatos";
 
@@ -151,4 +152,39 @@ public class ContatoDAO {
         return contatoRetornado;
         }
 
+    public void atualizarContato(Contato contato) {
+        String query = "UPDATE contatos SET nome = ?, idade = ?, dataCadastro = ? WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rset = null;
+
+        try {
+            // criar uma conexão com o banco de dados
+            conn = ConnectionFactory.createConnectionToMySQL();
+            conn.createStatement();
+
+            // criar uma PreparedStatement para executar a query
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, contato.getNome());
+            pstm.setInt(2, contato.getIdade());
+            pstm.setDate(3, new Date(contato.getDataCadastro().getTime()));
+            pstm.setInt(4, contato.getId());
+
+            // executar a query
+            pstm.execute();
+            System.out.println("Update realizado com sucesso!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // fechar as conexões
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
+}

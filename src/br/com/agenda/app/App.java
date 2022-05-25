@@ -33,7 +33,7 @@ public class App {
 //        contatoDAO.criarContato(novoContato);
 
 
-        // pesquisar
+        // pesquisar todos os contatos
 //        List<Contato> todosOsContatos = contatoDAO.consultarTodosOsContatos();
 //
 //        for (Contato contato : todosOsContatos){
@@ -44,14 +44,23 @@ public class App {
 //        }
 
         // pesquisar contato por nome
-        Contato pesquisaContato = new Contato();
-        Contato retornoContato = new Contato();
-        pesquisaContato.setNome("Luiz");
-        retornoContato = contatoDAO.consultarContatoPorNome(pesquisaContato);
-        System.out.println(retornoContato.getId());
-        System.out.println(retornoContato.getNome());
-        System.out.println(retornoContato.getIdade());
-        System.out.println(retornoContato.getDataCadastro());
+//        Contato pesquisaContato = new Contato();
+//        Contato retornoContato = new Contato();
+//        pesquisaContato.setNome("Luiz");
+//        retornoContato = contatoDAO.consultarContatoPorNome(pesquisaContato);
+//        System.out.println(retornoContato.getId());
+//        System.out.println(retornoContato.getNome());
+//        System.out.println(retornoContato.getIdade());
+//        System.out.println(retornoContato.getDataCadastro());
+
+        // atualizar contato
+        Contato novoContato = new Contato();
+        novoContato.setNome("Amanda");
+        novoContato.setIdade(46);
+        novoContato.setDataCadastro(new Date());
+        novoContato.setId(1);
+
+        contatoDAO.atualizarContato(novoContato);
 
     }
 }
