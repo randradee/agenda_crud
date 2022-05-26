@@ -13,8 +13,8 @@ public class App {
         Scanner scan = new Scanner(System.in).useDelimiter("\\n");
         int op = -1;
         do {
-            switch(op){
-                case 1:
+            switch (op) {
+                case 1 -> {
                     Contato novoContato = new Contato();
                     System.out.println("Digite a idade do contato");
                     int idade = scan.nextInt();
@@ -25,9 +25,8 @@ public class App {
                     novoContato.setNome(nome);
                     novoContato.setDataCadastro(new Date());
                     contatoDAO.criarContato(novoContato);
-
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     scan.nextLine();
                     System.out.println("Digite o nome do contato");
                     String nomePesquisa = scan.nextLine();
@@ -35,22 +34,20 @@ public class App {
                     pesquisaContato.setNome(nomePesquisa);
                     Contato retornoContato;
                     retornoContato = contatoDAO.consultarContatoPorNome(pesquisaContato);
-                    System.out.println("Nome do contato: "+ retornoContato.getNome()+", idade do contato: "+ retornoContato.getIdade()+
-                                        ", data de cadastro: " + retornoContato.getDataCadastro());
-                    break;
-
-                case 3:
+                    System.out.println("Nome do contato: " + retornoContato.getNome() + ", idade do contato: " + retornoContato.getIdade() +
+                            ", data de cadastro: " + retornoContato.getDataCadastro());
+                }
+                case 3 -> {
                     List<Contato> todosOsContatos = contatoDAO.consultarTodosOsContatos();
-
-                    for (Contato contato : todosOsContatos){
-                        System.out.println("ID do contato: "+contato.getId());
-                        System.out.println("Nome do contato: "+contato.getNome());
-                        System.out.println("Idade do contato: "+contato.getIdade());
-                        System.out.println("Data de cadastro: "+contato.getDataCadastro());
+                    for (Contato contato : todosOsContatos) {
+                        System.out.println("ID do contato: " + contato.getId());
+                        System.out.println("Nome do contato: " + contato.getNome());
+                        System.out.println("Idade do contato: " + contato.getIdade());
+                        System.out.println("Data de cadastro: " + contato.getDataCadastro());
                         System.out.println("");
                     }
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     Contato contatoAtualizar = new Contato();
                     System.out.println("Qual id do contato que deseja atualizar?");
                     int novoID = scan.nextInt();
@@ -62,10 +59,8 @@ public class App {
                     contatoAtualizar.setIdade(novaIdade);
                     contatoAtualizar.setNome(novoNome);
                     contatoAtualizar.setDataCadastro(new Date());
-
                     contatoDAO.atualizarContato(contatoAtualizar);
-
-                    break;
+                }
             }
 
             printMenu();
