@@ -35,7 +35,36 @@ public class App {
                     pesquisaContato.setNome(nomePesquisa);
                     Contato retornoContato;
                     retornoContato = contatoDAO.consultarContatoPorNome(pesquisaContato);
-                    System.out.println("Nome do contato: "+ retornoContato.getNome()+" , idade do contato: "+ retornoContato.getIdade()+" , data de cadastro: " + retornoContato.getDataCadastro());
+                    System.out.println("Nome do contato: "+ retornoContato.getNome()+", idade do contato: "+ retornoContato.getIdade()+
+                                        ", data de cadastro: " + retornoContato.getDataCadastro());
+                    break;
+
+                case 3:
+                    List<Contato> todosOsContatos = contatoDAO.consultarTodosOsContatos();
+
+                    for (Contato contato : todosOsContatos){
+                        System.out.println("ID do contato: "+contato.getId());
+                        System.out.println("Nome do contato: "+contato.getNome());
+                        System.out.println("Idade do contato: "+contato.getIdade());
+                        System.out.println("Data de cadastro: "+contato.getDataCadastro());
+                        System.out.println("");
+                    }
+                    break;
+                case 4:
+                    Contato contatoAtualizar = new Contato();
+                    System.out.println("Qual id do contato que deseja atualizar?");
+                    int novoID = scan.nextInt();
+                    System.out.println("Digite a nova idade do contato");
+                    int novaIdade = scan.nextInt();
+                    System.out.println("Digite o novo nome do contato");
+                    String novoNome = scan.nextLine();
+                    contatoAtualizar.setId(novoID);
+                    contatoAtualizar.setIdade(novaIdade);
+                    contatoAtualizar.setNome(novoNome);
+                    contatoAtualizar.setDataCadastro(new Date());
+
+                    contatoDAO.atualizarContato(contatoAtualizar);
+
                     break;
             }
 
