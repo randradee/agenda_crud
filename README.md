@@ -40,6 +40,7 @@ Substituindo usuário por seu usuário e após isto, digite a sua senha.
 
 ## 4. Melhorias futuras
 
+- Tratamento de erros (interface e banco);
 - Encapsulamento dos segredos de acesso do banco em variáveis de ambiente;
 - Construção de uma API para eliminar a interação via terminal;
 - Testes unitários;
