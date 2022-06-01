@@ -53,13 +53,22 @@ public class App {
                     int novoID = scan.nextInt();
                     System.out.println("Digite a nova idade do contato");
                     int novaIdade = scan.nextInt();
+                    scan.nextLine();
                     System.out.println("Digite o novo nome do contato");
                     String novoNome = scan.nextLine();
+
                     contatoAtualizar.setId(novoID);
                     contatoAtualizar.setIdade(novaIdade);
                     contatoAtualizar.setNome(novoNome);
                     contatoAtualizar.setDataCadastro(new Date());
                     contatoDAO.atualizarContato(contatoAtualizar);
+                }
+                case 5 -> {
+                    Contato deletarContato = new Contato();
+                    System.out.println("Digite o id do contato que deseja deletar: ");
+                    int id = scan.nextInt();
+                    deletarContato.setId(id);
+                    contatoDAO.apagarContato(deletarContato);
                 }
             }
 
