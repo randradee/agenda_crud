@@ -9,6 +9,7 @@ Cheguei em uma solução que utiliza JDBC para conexão com o MySQL.
 
 - Java
 - JDBC (API)
+- MySQL
 
 ## 3. Como executar em sua máquina?
 
