@@ -79,52 +79,6 @@ public class App {
         scan.close();
         System.out.println("Obrigado por utilizar este aplicativo!");
 
-
-
-
-
-
-
-
-        // criar contato
-//        Contato novoContato = new Contato();
-//        contatoDAO.criarContato(novoContato);
-
-
-        // pesquisar todos os contatos
-//        List<Contato> todosOsContatos = contatoDAO.consultarTodosOsContatos();
-//
-//        for (Contato contato : todosOsContatos){
-//            System.out.println(contato.getId());
-//            System.out.println(contato.getNome());
-//            System.out.println(contato.getIdade());
-//            System.out.println(contato.getDataCadastro());
-//        }
-
-        // pesquisar contato por nome
-//        Contato pesquisaContato = new Contato();
-//        Contato retornoContato = new Contato();
-//        pesquisaContato.setNome("Luiz");
-//        retornoContato = contatoDAO.consultarContatoPorNome(pesquisaContato);
-//        System.out.println(retornoContato.getId());
-//        System.out.println(retornoContato.getNome());
-//        System.out.println(retornoContato.getIdade());
-//        System.out.println(retornoContato.getDataCadastro());
-
-        // atualizar contato
-//        Contato novoContato = new Contato();
-//        novoContato.setNome("Amanda");
-//        novoContato.setIdade(46);
-//        novoContato.setDataCadastro(new Date());
-//        novoContato.setId(1);
-//
-//        contatoDAO.atualizarContato(novoContato);
-
-        // deletar contato
-//        Contato deletarContato = new Contato();
-//        deletarContato.setId(2);
-//        contatoDAO.apagarContato(deletarContato);
-
     }
     public static void printMenu(){
         System.out.println("Como deseja interagir com sua agenda?\n"
